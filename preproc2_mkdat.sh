@@ -21,7 +21,7 @@ cd /adata1/data/$animal/$rec_date
 echo $processfold
 #Step 2: Run axona2dat3_15_128, mv the .dat and .axtrk files and copy the .set files to the correct processing folder
 
-for i in `seq 1 $num_sessions`; #this will create a "010" session, but if I do `seq 1 9` it'll always make 9 files, need to find a way to fix it (Andrea 2022-06-12)
+for i in `seq 6 $num_sessions`; #note: change 6 back to 1 #this will create a "010" session, but if I do `seq 1 9` it'll always make 9 files, need to find a way to fix it (Andrea 2022-06-12)
 do
 	Axona2dat3_15_128 $basename"_0"$i".bin";
 	echo $i

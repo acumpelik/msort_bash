@@ -1,12 +1,12 @@
 # Bash script that creates the processing folders for each recording day
 
 
-animal="JC258"
+animal="JC283"
 
 # Bash key-value pairs where key: recording day date, value: total number of recording trials for that day
 declare -A mydict
-mydict["20210625"]=46
-mydict+=(["20210626"]=46 ["20210627"]=46 ["20210628"]=46 ["20210629"]=46 ["20210701"]=46 ["20210702"]=46 ["20210704"]=46 ["20210705"]=46 ["20210706"]=46 ["20210717"]=46 ["20210718"]=46 ["20210720"]=46 ["20210721"]=46)
+mydict["20220909"]=46
+mydict+=(["20220910"]=46 ["20220911"]=46 ["20220912"]=46 ["20220913"]=46 ["20220915"]=46 ["20220916"]=46 ["20220917"]=46 ["20220918"]=46 ["20220919"]=46 ["20220920"]=46 ["20220921"]=46 ["20220923"]=46 ["20220924"]=46)
 
 
 #Step 1: Create the necessary folders in the processing folder

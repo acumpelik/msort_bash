@@ -26,14 +26,6 @@ cd /adata1/processing/$animal/$rec_date/
 echo "Now running MountainSort on:" $rec_date
 ms_run_and_adapt.sh $animal $rec_date $threshold $nchan
 
-## Iterate over sessions (may have to update this if I have >9 sessions) (2022-06-08: I don't think I need to update this for >9 sessions because I'm using the parallel_process_args file
-
-#for session_num in `seq 1 $num_sessions`;
-#do
-##	ms_run_and_adapt.sh $animal $rec_date $threshold $nchan
-#	echo $session_num
-#done
-
 echo "MountainSort has been run on: " $rec_date
 
 #mail -s "MountainSort done!" acumpeli@ista.ac.at <<< "MountainSort has been completed for"$animal"." # I would need to configure this
