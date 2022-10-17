@@ -35,6 +35,7 @@ done
 
 mv *.dat /adata1/processing/$animal/$processfold;
 mv *.axtrk /adata1/processing/$animal/$processfold;
+#mv *.digbin /adata1/processing/$animal/$processfold; #commenting out because I don't use digbin
 
 cd /adata1/processing/$animal/$processfold
 rm $basename"_"0?"s."* #To delete any .set/.dat/.axtrk files associated to the screening/tuning recordings. 
