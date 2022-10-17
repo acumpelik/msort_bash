@@ -10,20 +10,23 @@
 #####################################################################################################
 # Step 1: Change the animal ID below to the correct one. Make the parallel_process_args file (File format: whitespace-separated single line with the recording date in YYYYMMDD format and the total num of recordings for that day.)
 animal="JC258"
+diskorigin="adata1" # location of the .bin files
+diskdest="adata2" #location the .dat files should go
 
 rec_date=$1 #In BASH $1 refers to the first argument passed
 num_sessions=$2 #In BASH $2 refers to the second argument passed
 
 basename=$animal"-"$rec_date
 processfold=$rec_date
-cd /adata1/data/$animal/$rec_date
+
+cd /$diskorigin/data/$animal/$rec_date
 
 echo $processfold
 #Step 2: Run axona2dat3_15_128, mv the .dat and .axtrk files and copy the .set files to the correct processing folder
 
 for i in `seq 6 $num_sessions`; #note: change 6 back to 1 #this will create a "010" session, but if I do `seq 1 9` it'll always make 9 files, need to find a way to fix it (Andrea 2022-06-12)
 do
-	Axona2dat3_15_128 $basename"_0"$i".bin";
+	Axona2dat3_15_128 $basename"_0"$i".bin"; #ideally I should check if the .bin file exists first, as sometimes it creates empty .dat files
 	echo $i
 done
 	
@@ -33,11 +36,11 @@ do
 	echo $i 
 done
 
-mv *.dat /adata1/processing/$animal/$processfold;
-mv *.axtrk /adata1/processing/$animal/$processfold;
-#mv *.digbin /adata1/processing/$animal/$processfold; #commenting out because I don't use digbin
+mv *.dat /$diskdest/processing/$animal/$processfold;
+mv *.axtrk /$diskdest/processing/$animal/$processfold;
+#mv *.digbin /$diskdest/processing/$animal/$processfold; #commenting out because I don't use digbin
 
-cd /adata1/processing/$animal/$processfold
+cd /$diskdest/processing/$animal/$processfold
 rm $basename"_"0?"s."* #To delete any .set/.dat/.axtrk files associated to the screening/tuning recordings. 
 #Note from Andrea on 2022-05-31: I'm commenting out for now because I don't want to delete these files. 20220612: deleting after all
 
