@@ -9,6 +9,8 @@ num_sessions=8
 
 cd $rec_date
 
+#### NEED TO UPDATE: only works for 1-9 ####
+
 for i in `seq $num_sessions`;
 do
 	echo $animal"-"$rec_date"_0"$i >> BASELIST

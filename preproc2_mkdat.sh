@@ -9,7 +9,7 @@
 
 #####################################################################################################
 # Step 1: Change the animal ID below to the correct one. Make the parallel_process_args file (File format: whitespace-separated single line with the recording date in YYYYMMDD format and the total num of recordings for that day.)
-animal="JC258"
+animal="JC283"
 diskorigin="adata1" # location of the .bin files
 diskdest="adata2" #location the .dat files should go
 
@@ -24,21 +24,24 @@ cd /$diskorigin/data/$animal/$rec_date
 echo $processfold
 #Step 2: Run axona2dat3_15_128, mv the .dat and .axtrk files and copy the .set files to the correct processing folder
 
-for i in `seq 6 $num_sessions`; #note: change 6 back to 1 #this will create a "010" session, but if I do `seq 1 9` it'll always make 9 files, need to find a way to fix it (Andrea 2022-06-12)
+for i in `seq 5 $num_sessions`; #note: change 5 back to 1 #this will create a "010" session, but if I do `seq 1 9` it'll always make 9 files, need to find a way to fix it (Andrea 2022-06-12)
 do
 	Axona2dat3_15_128 $basename"_0"$i".bin"; #ideally I should check if the .bin file exists first, as sometimes it creates empty .dat files
 	echo $i
 done
 	
-for i in `seq 10 $num_sessions`;
-do
-	Axona2dat3_15_128 $basename"_"$i".bin";
-	echo $i 
-done
+#for i in `seq 10 $num_sessions`;
+#do
+#	Axona2dat3_15_128 $basename"_"$i".bin";
+#	echo $i 
+#done
 
-mv *.dat /$diskdest/processing/$animal/$processfold;
-mv *.axtrk /$diskdest/processing/$animal/$processfold;
+#mv *.dat /$diskdest/processing/$animal/$processfold;
+#mv *.axtrk /$diskdest/processing/$animal/$processfold;
 #mv *.digbin /$diskdest/processing/$animal/$processfold; #commenting out because I don't use digbin
+#rsync *[0-9].{dat,digbin,axtrk} /$diskdest/processing/$animal/$processfold #consolidating above 3 lines
+
+#have to remove files afterwards
 
 cd /$diskdest/processing/$animal/$processfold
 rm $basename"_"0?"s."* #To delete any .set/.dat/.axtrk files associated to the screening/tuning recordings. 

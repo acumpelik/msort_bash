@@ -8,14 +8,15 @@
 
 # Note: I think xargs should run without me specfigying that -n 1, but it doesn't work now for some reason
 
-diskname="adata2" #where the data is being copied
+diskorigin="adata1"
+diskdest="adata2" #where the data is being copied
 animal="JC283"
 rec_date=$1
 
 echo "Moving .dat files for: "$rec_date
 
-cd /adata1/data/$animal/$rec_date
-rsync -av *[0-9].{dat,axtrk,digbin} /$diskname/$animal/$rec_date
+cd /$diskorigin/data/$animal/$rec_date
+rsync -av *[0-9].{dat,axtrk,digbin} /$diskdest/processing/$animal/$rec_date;
 
 # Run this after verifying that the files copied:
 #rm *[0-9].dat /adata1/processing/$animal/$processfold;
